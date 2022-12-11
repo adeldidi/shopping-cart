@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+    box-sizing:border-box ;
+     list-style: none;
+     text-decoration: none;
+}
+img{
+    height: 250px;
+    width: 250px;
+    
+}
+
+
+header{
+    position: fixed;
+    width: 100%;
+    background-color: aqua ;
+    
+    z-index:100;
+}
+.nav_container{
+    display: flex;
+    align-items: center;
+     margin: auto;
+    justify-content: space-between;
+    max-width: 800px;
+   margin-top: 20px;
+   margin-bottom: 20px;
+
+}
+.cart{
+    position: fixed;
+    top:0;
+    right:-100%;
+    width: 400px;
+    min-height: 100vh;
+    background-color: white;
+    box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
+    transition: 0.3s;
+}
+.cart.active {
+    right: 0;
+}
+.cart.remove {
+    right:-100%;
+}
+
+.cart-title{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}
+.detail-box{
+    display: grid;
+}
+.cart-quantity{
+    border: 1px solid ;
+    width :2.4rem;
+    text-align: center;
+}
+.cart-remove{
+    font-size: 24px;
+    cursor: pointer;
+    color: brown;
+}
+.Total{
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid black;
+}
+.Total-price{
+    margin-left: 0.5rem;
+}
+.Btn-buy{
+    display: flex;
+    margin: 1.5rem auto 0 auto ;
+    cursor: pointer;
+    
+}
+#close-cart{
+    position:absolute;
+    font-size: 2rem;
+    top:1rem;
+    right:0.8rem;
+    cursor: pointer;
+}
+.cart-box{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 32% 50% 18%;
+    margin-top: 1rem;
+    gap:1rem;
+}
+.cart-image{
+    width: 100px;
+    height:100px;
+}
+
+.logo{
+    font-size: 1.1rem;
+    font-weight: 400;
+
+}
+#cartIcon{
+   font-size: 2rem;
+   cursor: pointer;
+}
+section{
+    padding-top: 5rem ;
+    margin-left: 100px;
+    margin-right: 100px;
+   
+}
+
+.section_title{
+    text-align: center;
+    margin-bottom: 50px;
+}
+.shop_content{
+    display: grid;
+
+    grid-template-columns: auto auto auto auto;
+    gap: 20px;
+}
+.product_box{
+    position: relative;
+}
+.product_box :hover {
+    padding: 10px;
+    transition: 0,4s;
+    /*border: 1px solid black; */
+    size: 1.2rem;
+}
+
+.product-title{
+ font-size: 1.1rem;
+
+}
+.price{
+    font-weight: 500;
+}
+.add-cart{
+position: absolute;
+right: 0;
+background-color: rgba(167, 161, 161, 0.158);
+cursor: pointer;
+}
