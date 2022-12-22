@@ -1,5 +1,74 @@
+// formulaire
+var nameError = document.getElementById("name-error")
+var phoneError = document.getElementById("phone-error")
+var emailError = document.getElementById("Email-error")
+var messageError = document.getElementById("message-error")
+var submitError = document.getElementById("submit-error")
+
+function validateName(){
+    var name= document.getElementById("contact-name").value
+
+    if(name.length == 0){
+        nameError.innerHTML="Name is required"
+        return false
+    }
+    if(!name.match(/^[A-Za-z]*\s{1}[A-Za-z]*$/)){
+        nameError.innerHTML=" Write full name"
+        return false
+    }
+    nameError.innerHTML= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>'
+    return true
+}
+
+function validatePhone(){
+    var phone= document.getElementById("contact-phone").value
+    console.log(phone)
+    if(phone.length !== 8){
+        phoneError.innerHTML="Phone number should be 8 digites"
+        return false
+    }
+    if(!phone.match(/^[0-9]{8}$/)){
+        phoneError.innerHTML= "Phone number is invalid"
+        return flase
+    }
+    phoneError.innerHTML= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>'
+    return true
+}
+
+function validateEmail(){
+   var email= document.getElementById("contact-email").value
+   console.log(email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/))
+   if(email.length==0){
+    emailError.innerHTML= "Email is required"
+   }else if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+    console.log("hhh")
+    emailError.innerHTML= "Email is invalid"
+   } else{
+    emailError.innerHTML= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>'
+
+   }
+   return true
+}
+function validateMessage(){
+    var message= document.getElementById("contact-message").value
+   var required = 30
+   var left = required - message.length
+   if (left>0){
+    messageError.innerHTML=left+ "more characters required"
+    return false;
+   }
+   messageError.innerHTML= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>'
+   return true
+}
+
+function validateForm(){
+    if(!validateName() || !validatePhone()|| !validateMessage() || !validateEmail()){
+        submitError.innerHTML = "please fix error to submit"
+        return false
+    }
+}
 // cart
-let cartIcon=document.querySelector("#cartIcon")
+let cartIcons=document.querySelector("#cartIcon")
 let cart=document.querySelector(".cart")
 let closeCart=document.querySelector("#close-cart")
 
@@ -42,12 +111,30 @@ document.getElementsByClassName("Btn-buy")[0].addEventListener("click",buyButton
 }
 //Buy Button
 function buyButtonClicked(){
+    var cartContent=document.getElementsByClassName("cart-content")[0]
+    var cartBoxes= cartContent.getElementsByClassName("cart-box")
+    var total=0
+    for (var i=0; i<cartBoxes.length; i++){
+    var cartBox= cartBoxes[i]
+    var priceElement=cartBox.getElementsByClassName("cart-price")[0]
+    var quantityElement= cartBox.getElementsByClassName("cart-quantity")[0]
+    var price = parseFloat ( priceElement.innerText.replace("$",""))
+    var quantity = quantityElement.value
+    total= total+ (price*quantity)
+}
+  if (total !==0){
     alert(" Your order is registred")
     var cartContent= document.getElementsByClassName("cart-content")[0]
     while(cartContent.hasChildNodes()){
         cartContent.removeChild(cartContent.firstChild)
     }
+}
+if (total ==0){
+    alert( "Please ADD Product to the Cart")
+}
+
     updateTotal()
+    
 }
 function removeCartItem(event){
     var buttonClicked= event.target
@@ -106,16 +193,12 @@ cartshopBox.getElementsByClassName(" cart-quantity")[0].addEventListener("change
 // Update Total
 function updateTotal(){
     var cartContent=document.getElementsByClassName("cart-content")[0]
-    console.log(cartContent)
     var cartBoxes= cartContent.getElementsByClassName("cart-box")
-    console.log(cartBoxes)
     var total=0
     for (var i=0; i<cartBoxes.length; i++){
     var cartBox= cartBoxes[i]
     var priceElement=cartBox.getElementsByClassName("cart-price")[0]
-    console.log(priceElement)
     var quantityElement= cartBox.getElementsByClassName("cart-quantity")[0]
-    console.log(quantityElement)
     var price = parseFloat ( priceElement.innerText.replace("$",""))
     var quantity = quantityElement.value
     total= total+ (price*quantity)
